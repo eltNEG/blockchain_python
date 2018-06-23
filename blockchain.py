@@ -12,7 +12,7 @@ class Blockchain(Block):
       self.blocks.append(new_block)
 
     def new_genesis_block(self):
-      return self.new_block( "Genesis block", b'')
+      return self.new_block( "Genesis block", b'Genesis')
 
 
     def new_blockchain(self):

@@ -7,7 +7,7 @@ def main():
   bc.add_block("Send 2 more BTC to Ivan")
 
   for block in bc.blocks:
-    print("Prev. hash: %s\n" % (block.PrevBlockHash))
+    print("Prev. hash: %s\n" % (block.PrevBlockHash), type(block.PrevBlockHash))
     print("Data: %s\n" % (block.Data))
     print("Hash: %s\n" % (block.Hash))
 
