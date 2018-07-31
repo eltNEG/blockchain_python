@@ -2,6 +2,7 @@ from time import time
 import json
 from hashlib import sha256
 from pow import *
+import pickle
 
 class Block():
     def __init__(self, _timestamp, _data,  _prevblockhash, _hash):
@@ -13,11 +14,20 @@ class Block():
     # new_block creates and returns Block
     def new_block(self, _data: str, _prevblockhash: bytearray):
       block = Block(time(), _data, _prevblockhash, b'')
-      block.set_hash()
+      pow = ProofOfWork(block)
+      pow.new_proof_of_work(block)
+      nonce, hash = pow.run()
+
+      # Add new properties for mined block
+      block.Hash = str(hash)
+      block.Nonce = nonce
 
       return block
 
-    def set_hash(self):
-      timestamp = int(self.Timestamp)
-      headers = str(timestamp) + str(self.PrevBlockHash) + self.Data
-      self.Hash = sha256(headers.encode()).hexdigest()
+    # serialize serializes Block
+    def serialize(self, _block: object):
+        return pickle.dumps(_block)
+
+    # deserialize deserializes block
+    def deserialize(self, _str: bytes):
+        return pickle.loads(_str)
