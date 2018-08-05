@@ -1,4 +1,5 @@
 from blockchain import *
+import plyvel
 
 def main():
   bc = Blockchain([]).new_blockchain()
@@ -10,6 +11,8 @@ def main():
     print("Prev. hash: %s\n" % (block.PrevBlockHash), type(block.PrevBlockHash))
     print("Data: %s\n" % (block.Data))
     print("Hash: %s\n" % (block.Hash))
+    print("Key: %s\n" % (block.Hash.encode()))
+    
 
 
 main()

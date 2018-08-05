@@ -25,9 +25,9 @@ class Block():
       return block
 
     # serialize serializes Block
-    def serialize(self, _block: object):
-        return pickle.dumps(_block)
+    def serialize(self):
+        return pickle.dumps(self)
 
     # deserialize deserializes block
-    def deserialize(self, _str: bytes):
-        return pickle.loads(_str)
+    def deserialize(self):
+        return self

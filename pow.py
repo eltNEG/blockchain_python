@@ -2,6 +2,7 @@ from hashlib import sha256
 import sys
 from tqdm import trange
 from time import time
+from bitstring import BitArray
 
 
 
@@ -61,5 +62,7 @@ class ProofOfWork():
 
       self.set_difficulty(mine_interval)
 
+      # Change Hash to bitstring
+      hash = BitArray(hex=hash).bin
 
       return nonce, hash
