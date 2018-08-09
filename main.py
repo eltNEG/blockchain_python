@@ -1,5 +1,4 @@
-from blockchain import *
-import plyvel
+from blockchain import Blockchain
 
 def main():
   bc = Blockchain([]).new_blockchain()
