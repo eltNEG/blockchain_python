@@ -4,7 +4,7 @@ from blockchain import Blockchain
 
 def main():
     """Test the blockchain"""
-    bc = Blockchain([]).new_blockchain()
+    bc = Blockchain.new_blockchain()
     bc.add_block("Send 1 BTC to Ivan")
     bc.add_block("Send 2 more BTC to Ivan")
 
