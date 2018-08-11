@@ -10,3 +10,5 @@ db
 init.sh
 .mypy_cache/
 blockchain_db/
+lvldb.py
+requirements.txt

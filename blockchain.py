@@ -74,12 +74,3 @@ class Blockchain(object):
 
     def __str__(self):
         return f"Last Hash: {self.tip.decode()}"
-
-
-def main():
-    """Tests"""
-    bc = (Blockchain.new_blockchain())
-
-
-if __name__ == '__main__':
-    main()

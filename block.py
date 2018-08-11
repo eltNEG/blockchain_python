@@ -45,20 +45,3 @@ Prev.Hash: {}
 Hash:      {}
 nonce:     {}
 """.format(self.timestamp, self.data, self.prev_block_hash, self.hash, self.nonce)
-
-
-def main():
-    """Test Block hash with hashes from blockchain_go"""
-    block = Block.new_block("Genesis Block", "")
-    print(block)
-    print(Block.new_genesis_block())
-
-    block1 = Block(1533814510, "Genesis Block", "", "", 0)
-    print(block1)
-    block2 = Block(1533814510, "Send 1btc to eltneg", block1.hash, "", 0)
-
-    print(block2)
-
-
-if __name__ == '__main__':
-    main()
