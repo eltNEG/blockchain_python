@@ -1,6 +1,6 @@
 """Block"""
+import pickle
 from time import time
-from hashlib import sha256
 from proofofwork import ProofOfWork
 
 
@@ -14,6 +14,13 @@ class Block():
         self.prev_block_hash = _prevblockhash
         self.hash = _hash
         self.nonce = nonce
+
+    def serialise(self) -> bytes:
+        return pickle.dumps(self)
+
+    @staticmethod
+    def deserialise_block(serilised_block: bytes):
+        return pickle.loads(serilised_block)
 
     @staticmethod
     def new_block(_data: str, _prevblockhash: str):
