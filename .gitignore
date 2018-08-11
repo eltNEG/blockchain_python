@@ -8,3 +8,5 @@ bcpy/
 test.py
 db
 init.sh
+.mypy_cache/
+blockchain_db/
