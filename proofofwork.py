@@ -1,5 +1,5 @@
 from hashlib import sha256
-import sys
+
 
 class ProofOfWork(object):
     targetbits = 16
