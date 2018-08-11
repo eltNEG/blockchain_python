@@ -1,6 +1,7 @@
 from hashlib import sha256
 import sys
 
+
 class ProofOfWork(object):
     targetbits = 16
 
@@ -42,16 +43,3 @@ class ProofOfWork(object):
         data = pow.prepare_data(block.nonce)
         hash = sha256(data.encode("utf-8")).hexdigest()
         return int(hash, 16) < pow.target
-
-
-def main():
-    from block import Block
-
-    block = Block(1533814510, "Send 1btc to eltneg",
-                  "block1.hash", "sgsfgfg", 0)
-    pow = ProofOfWork.new_proofofwork(block)
-    print(pow.run())
-
-
-if __name__ == '__main__':
-    main()

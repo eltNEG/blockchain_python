@@ -8,3 +8,4 @@ bcpy/
 test.py
 db
 init.sh
+lvldb.py
