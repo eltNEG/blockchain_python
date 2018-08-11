@@ -7,3 +7,5 @@ __pycache__/pow.cpython-36.pyc
 bcpy/
 test.py
 db
+init.sh
+lvldb.py

@@ -22,14 +22,3 @@ class Blockchain(object):
 
     def __str__(self):
         return str(self.blocks)
-
-
-def main():
-    """Tests"""
-    bc = (Blockchain.new_blockchain())
-    for block in bc.blocks:
-        print(block)
-
-
-if __name__ == '__main__':
-    main()
