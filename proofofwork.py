@@ -12,9 +12,9 @@ class ProofOfWork(object):
         data = (
             self.block.prev_block_hash +
             self.block.data +
-            hex(self.block.timestamp) +
-            hex(self.targetbits) +
-            hex(nonce)
+            hex(self.block.timestamp)[2:] +
+            hex(self.targetbits)[2:] +
+            hex(nonce)[2:]
         )
         return data
 
@@ -26,7 +26,6 @@ class ProofOfWork(object):
             print(hash, end='\r')
             if int(hash, 16) < self.target:
                 break
-            nonce += 1
         print(f'{hash}\n')
         return (hash, nonce)
 
