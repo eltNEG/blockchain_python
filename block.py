@@ -1,33 +1,42 @@
+"""Block"""
 from time import time
-import json
 from hashlib import sha256
-from pow import *
-import pickle
+
 
 class Block():
-    def __init__(self, _timestamp, _data,  _prevblockhash, _hash):
-        self.Timestamp = _timestamp
-        self.Data = _data
-        self.PrevBlockHash = _prevblockhash
-        self.Hash = _hash
+    """keeps block headers"""
 
-    # new_block creates and returns Block
-    def new_block(self, _data: str, _prevblockhash: bytearray):
-      block = Block(time(), _data, _prevblockhash, b'')
-      pow = ProofOfWork(block)
-      pow.new_proof_of_work(block)
-      nonce, hash = pow.run()
+    def __init__(self, _timestamp, _data, _prevblockhash, _hash):
+        """Initialise block"""
+        self.timestamp = _timestamp
+        self.data = _data
+        self.prev_block_hash = _prevblockhash
+        self.hash = _hash
 
-      # Add new properties for mined block
-      block.Hash = str(hash)
-      block.Nonce = nonce
+    @staticmethod
+    def new_block(_data: str, _prevblockhash: str):
+        """creates and returns Block"""
+        block = Block(int(time()), _data, _prevblockhash, "")
+        block.__set_hash()
+        return block
 
-      return block
+    @staticmethod
+    def new_genesis_block():
+        """Creates genesis block"""
+        return Block.new_block("Genesis Block", "")
 
-    # serialize serializes Block
-    def serialize(self):
-        return pickle.dumps(self)
+    def __set_hash(self):
+        headers = str(self.prev_block_hash) + self.data + str(self.timestamp)
+        self.hash = sha256(headers.encode("utf-8")).hexdigest()
 
-    # deserialize deserializes block
-    def deserialize(self):
-        return self
+    def sethash(self):
+        headers = str(self.prev_block_hash) + self.data + str(self.timestamp)
+        self.hash = sha256(headers.encode("utf-8")).hexdigest()
+
+    def __str__(self):
+        return """
+Timestamp: {}
+Data:      {}
+Prev.Hash: {}
+Hash:      {}
+""".format(self.timestamp, self.data, self.prev_block_hash, self.hash)

@@ -1,0 +1,12 @@
+__pycache__/
+.vscode/
+*.pyc
+__pycache__/block.cpython-36.pyc
+__pycache__/blockchain.cpython-36.pyc
+__pycache__/pow.cpython-36.pyc
+bcpy/
+test.py
+db
+init.sh
+lvldb.py
+requirements.txt
