@@ -1,12 +1,8 @@
-__pycache__/
-.vscode/
-*.pyc
-__pycache__/block.cpython-36.pyc
-__pycache__/blockchain.cpython-36.pyc
-__pycache__/pow.cpython-36.pyc
 bcpy/
+.mypy_cache
+.vscode
+__pycache__/
+blockchain_db
 test.py
-db
+db/
 init.sh
-lvldb.py
-requirements.txt
