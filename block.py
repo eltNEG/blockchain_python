@@ -1,42 +1,34 @@
-"""Block"""
 from time import time
+import json
 from hashlib import sha256
-
+from pow import *
+import pickle
 
 class Block():
-    """keeps block headers"""
+    def __init__(self, _timestamp, _data,  _prevblockhash, _bits):
+        self.Timestamp = _timestamp
+        self.Data = _data
+        self.PrevBlockHash = _prevblockhash
+        self.Bits = _bits
 
-    def __init__(self, _timestamp, _data, _prevblockhash, _hash):
-        """Initialise block"""
-        self.timestamp = _timestamp
-        self.data = _data
-        self.prev_block_hash = _prevblockhash
-        self.hash = _hash
 
-    @staticmethod
-    def new_block(_data: str, _prevblockhash: str):
-        """creates and returns Block"""
-        block = Block(int(time()), _data, _prevblockhash, "")
-        block.__set_hash()
-        return block
+    # new_block creates and returns Block
+    def new_block(self, _data: str, _prevblockhash: bytearray, _bits: int):
+      block = Block(time(), _data, _prevblockhash, _bits)
+      pow = ProofOfWork(block)
+      nonce, hash, next_required_bits = pow.run()
 
-    @staticmethod
-    def new_genesis_block():
-        """Creates genesis block"""
-        return Block.new_block("Genesis Block", "")
+      # Add new properties for mined block
+      block.Hash = hash
+      block.Nonce = nonce
+      block.NextRequiredBits = next_required_bits
 
-    def __set_hash(self):
-        headers = str(self.prev_block_hash) + self.data + str(self.timestamp)
-        self.hash = sha256(headers.encode("utf-8")).hexdigest()
+      return block
 
-    def sethash(self):
-        headers = str(self.prev_block_hash) + self.data + str(self.timestamp)
-        self.hash = sha256(headers.encode("utf-8")).hexdigest()
+    # serialize serializes Block
+    def serialize(self):
+        return pickle.dumps(self)
 
-    def __str__(self):
-        return """
-Timestamp: {}
-Data:      {}
-Prev.Hash: {}
-Hash:      {}
-""".format(self.timestamp, self.data, self.prev_block_hash, self.hash)
+    # deserialize deserializes block
+    def deserialize(self, _encoded : str):
+        return pickle.loads(_encoded)
