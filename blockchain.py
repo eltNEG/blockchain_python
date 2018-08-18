@@ -16,7 +16,7 @@ class Blockchain(Block):
 
 
     def add_block(self, _data: str):
-        self.iterator.seek_to_last()
+        self.iterator.seek_to_first()
         last_hash = self.iterator.key()
         last_bit = self.deserialize(self.iterator.value()).NextRequiredBits
         new_block = self.new_block(_data, last_hash, last_bit)
