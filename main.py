@@ -1,15 +1,13 @@
 from blockchain import *
+from cli import *
+
+db_file = "/tmp/blockchain"
 
 def main():
-  bc = Blockchain([]).new_blockchain()
+  bc = Blockchain("/tmp/blockchain").new_blockchain()
+  Run(bc)
+  bc.db.close()
 
-  bc.add_block("Send 1 BTC to Ivan")
-  bc.add_block("Send 2 more BTC to Ivan")
-
-  for block in bc.blocks:
-    print("Prev. hash: %s\n" % (block.PrevBlockHash), type(block.PrevBlockHash))
-    print("Data: %s\n" % (block.Data))
-    print("Hash: %s\n" % (block.Hash))
 
 
 main()
